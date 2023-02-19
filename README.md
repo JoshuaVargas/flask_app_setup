@@ -152,15 +152,24 @@ Our views will come from our templates found in the templates folder. Here is a 
 
 Now we'll need a way to get our models to interact with our views.
 
+#### \_\_init__.py
+
+First, you'll need to instantiate your Flask app:
+
+```py
+from flask import Flask
+app = Flask (__name__)
+app.secret_key = 'keep it secret, keep it safe'
+```
+
 #### server.py
 
-First, you'll need a server:
+Then you'll need to create the server:
 
 ```py
 from flask_app import app
 # Import ALL controller files
-from flask_app.controllers import controller_user, controller_routes
-
+from flask_app.controllers import user_controller, route_controller
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -173,7 +182,7 @@ Now, you'll need some routes:
 ```py
 from flask_app import app
 from flask import render_template, session, request, redirect
-from flask_app.models.model_user import User
+from flask_app.models.user_model import User
 
 
 @app.route("/")
@@ -187,14 +196,14 @@ def dashboard():
     return render_template("dashboard.html")
 ```
 
-#### user_route.py
+#### user_controller.py
 
 Your route controller shouldn't do all the routing, so here's a template for some routing based on the user_model.py file:
 
 ```py
 from flask_app import app
 from flask import render_template, session, request, redirect
-from flask_app.models.model_user import User
+from flask_app.models.user_model import User
 
 
 @app.route("/user/new")
