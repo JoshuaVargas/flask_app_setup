@@ -12,7 +12,7 @@ When setting up a Flask app, it's important to ensure that things are properly n
         - x_model.py
     - __static__
         - css
-            -style.css
+            - style.css
         - js
             - script.js
     - __templates__
